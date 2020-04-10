@@ -15,7 +15,7 @@ db = client.twitter
 
 def get_articles_for_group(size=10, group=-1):
     articles = []
-    article_list = db.group_articles.find_one({"id": group})["articles"]
+    article_list = db.group_articles.find_one({"id": group})
     i = 0
     titles = set()
     for article_id in article_list:
@@ -24,7 +24,7 @@ def get_articles_for_group(size=10, group=-1):
         article = db.rec_articles.find_one({"id": article_id})
         if article and len(article["summary"])>100 and article["title"] not in titles:
             entry = {}
-	    titles.add(article["title"])
+            titles.add(article["title"])
             entry["title"] = article["title"]
             entry["url"] = article["url"]["url"]
             entry["source"] = article["source"]["name"]

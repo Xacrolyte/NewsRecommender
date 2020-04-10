@@ -7,7 +7,7 @@ from flask import request
 from pymongo import MongoClient
 import json,pickle
 import os
-from request import *
+from recommender import request
 
 client = MongoClient()
 db = client.twitter
@@ -30,7 +30,8 @@ def about():
 @app.route('/get_news/<user_name>', methods=["GET"])
 def get_news(user_name=None):
     # rdef get_recommendations(name):
-    data = get_recommendations(user_name)
+    print(user_name)
+    data = request.get_recommendations(user_name)
     # return articles
     return json.dumps(data)
 
